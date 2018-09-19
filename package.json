@@ -1,6 +1,6 @@
 {
   "name": "image-sequencer",
-  "version": "2.1",
+  "version": "0.0.1",
   "description": "Sequencer - A fast(?) fullscreen image-sequence player",
   "main": "sequencer/sequencer.js",
   "directories": {
@@ -17,6 +17,15 @@
     "image",
     "sequence",
     "sequencer"
+  ],
+  "dependencies": {
+    
+  },
+  "engines": {
+    
+  },
+  "contributors": [
+    "baezor"
   ],
   "author": "Andreas Gysin",
   "license": "MIT",
