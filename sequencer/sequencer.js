@@ -36,7 +36,7 @@ class S{
             scaleMode        : 'cover',      // as in CSS3, can be: auto, cover, contain
             direction        : 'x',          // mouse direction, can be x, -x, y, -y, applies only if playMode is 'drag' or 'hover'
             playMode         : 'drag',       // none, drag, hover, auto    TODO: remove auto, add loop, pong, once
-            loop             : 'loop',       // loop, pong or none         TODO: remove
+            loop             : 'none',       // loop, pong or none         TODO: remove
             interval         : 0,            // interval in milliseconds between each frame, applies only if playMode is 'auto'
             autoLoad         : 'all',        // all, first, none: triggers the loading of the queue immediatly, can be disabled to be triggered in a different moment
             fitFirstImage    : false,        // resizes the canvas to the size of the first loaded image in the sequence
@@ -116,9 +116,26 @@ class S{
         }
     }
 
+    play(){
+        let pt = 0;
+        const loop = (t)=> {
+            const dt = t - pt;
+            if (dt >= this.config.interval) {
+                this.nextImage();
+                pt = Math.max(t, t - (dt - this.config.interval));
+            }
+            requestAnimationFrame(loop);
+        };
+        requestAnimationFrame(loop);
+    }
+
     nextImage(loop) {
+        
         if (!loop) loop = this.config.loop;
-        if(loop === 'pong') {
+
+        if(loop = 'once'){
+            this.drawImage(++this.current);
+        } else if(loop === 'pong') {
             this.current += this.pongSign;
             if (this.current >= this.images.length-1) { //this.current could ev. change by other playmodes, so extra-checks are necessary
                 this.pongSign = -1;
@@ -128,7 +145,7 @@ class S{
                 this.current = 0;
             }
             this.drawImage(this.current);
-        } else {
+        } else if(loop === 'loop') {
             this.drawImage(++this.current % this.images.length); //loop
         }
     }
