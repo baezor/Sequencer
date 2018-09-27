@@ -1,16 +1,20 @@
-Sequencer
-A fast(?) fullscreen image-sequence player
+# Sequencer
+> A fast fullscreen image-sequence player
 
---------------------------------------------------------------------------------
-Demo:
-    https://ertdfgcvb.xyz/p2/sm/play.html#2
+This project is forked from ertdfgcvb/Sequence. The aim is to improve the entire library, 
+addding new features and a better performance. Dev branch is not safe for production. Master is the latest
+release. 
 
---------------------------------------------------------------------------------
-How to use:
-    The minimum paramters are two filenames of an image sequence.
-    The parser tries to figure out if there are leading zeroes:
+## Demo:
+https://baezor.github.io/sequencer
 
-    const s1 = Sequencer.make({
+## How to use:
+The minimum paramters are two filenames of an image sequence.
+The parser tries to figure out if there are leading zeroes:
+
+```javascript
+
+const s1 = Sequencer.make({
         from : 'pics/pig/DSC04701.JPG',
         to   : 'pics/pig/DSC04775.JPG',
     });
@@ -51,33 +55,36 @@ How to use:
         imageLoad        : function     // callback for each image load
         queueComplete    : function     // callback for queue complete
     };
+     };
+
+```
+   
+
+
+## Changelog:
+
+### 2.1
+- update to ECMAScript 2015 (aka ES6)
+- script is now an ES6 module (may need transpiling for legacy support) and loaded as such in the examples
+
+### 2.0
+- multiple instances   
+- better parser (automatic leading zeroes detection)
+- canvas only (2d)
+- incremental drag
+- removed default loader (a custom one can be implemented via callback)
+- cover frame
+
+## Todo:
+- remove 'loop' option (merge with playMode)
+- transpiled version for ES5 support
+- area hovering     
+- accept an image array as parameter
+- accept a spritesheet as parameter
+- WebGL support
+- better touch support
 
 --------------------------------------------------------------------------------
-Changelog:
-      2.1
-    - update to ECMAScript 2015 (aka ES6)
-    - script is now an ES6 module (may need transpiling for legacy support)
-      and loaded as such in the examples
-
-      2.0
-    - multiple instances
-    - better parser (automatic leading zeroes detection)
-    - canvas only (2d)
-    - incremental drag
-    - removed default loader (a custom one can be implemented via callback)
-    - cover frame
-
---------------------------------------------------------------------------------
-Todo:
-    - remove 'loop' option (merge with playMode)
-    - transpiled version for ES5 support
-    - area hovering 
-    - accept an image array as parameter
-    - accept a spritesheet as parameter
-    - WebGL support
-    - better touch support
-
---------------------------------------------------------------------------------
-Author:
-    Andreas Gysin
-    @andreasgysin (twitter)
+### Author:
+- Original: Andreas Gysin | @andreasgysin (twitter)
+- Forked repo: Angel Baez
